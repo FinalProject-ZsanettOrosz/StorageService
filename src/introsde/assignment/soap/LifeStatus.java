@@ -17,6 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="measureType" type="{http://soap.assignment.introsde/}measureDefinition" minOccurs="0"/>
+ *         &lt;element name="timestamp" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="value" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -29,11 +30,13 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "lifeStatus", propOrder = {
     "measureType",
+    "timestamp",
     "value"
 })
 public class LifeStatus {
 
     protected MeasureDefinition measureType;
+    protected String timestamp;
     protected String value;
 
     /**
@@ -58,6 +61,30 @@ public class LifeStatus {
      */
     public void setMeasureType(MeasureDefinition value) {
         this.measureType = value;
+    }
+
+    /**
+     * Gets the value of the timestamp property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    /**
+     * Sets the value of the timestamp property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTimestamp(String value) {
+        this.timestamp = value;
     }
 
     /**

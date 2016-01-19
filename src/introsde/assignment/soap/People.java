@@ -29,21 +29,6 @@ public interface People {
     /**
      * 
      * @param personId
-     * @return
-     *     returns java.util.List<introsde.assignment.soap.AchivedGoal>
-     */
-    @WebMethod
-    @WebResult(name = "goal", targetNamespace = "")
-    @RequestWrapper(localName = "readAchivedGoalList", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.ReadAchivedGoalList")
-    @ResponseWrapper(localName = "readAchivedGoalListResponse", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.ReadAchivedGoalListResponse")
-    @Action(input = "http://soap.assignment.introsde/People/readAchivedGoalListRequest", output = "http://soap.assignment.introsde/People/readAchivedGoalListResponse")
-    public List<AchivedGoal> readAchivedGoalList(
-        @WebParam(name = "personId", targetNamespace = "")
-        int personId);
-
-    /**
-     * 
-     * @param personId
      * @param measureType
      * @return
      *     returns java.util.List<introsde.assignment.soap.HealthMeasureHistory>
@@ -82,6 +67,36 @@ public interface People {
 
     /**
      * 
+     * @param personId
+     * @param history
+     */
+    @WebMethod
+    @RequestWrapper(localName = "updatePersonMeasure", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.UpdatePersonMeasure")
+    @ResponseWrapper(localName = "updatePersonMeasureResponse", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.UpdatePersonMeasureResponse")
+    @Action(input = "http://soap.assignment.introsde/People/updatePersonMeasureRequest", output = "http://soap.assignment.introsde/People/updatePersonMeasureResponse")
+    public void updatePersonMeasure(
+        @WebParam(name = "personId", targetNamespace = "")
+        int personId,
+        @WebParam(name = "history", targetNamespace = "", mode = WebParam.Mode.INOUT)
+        Holder<HealthMeasureHistory> history);
+
+    /**
+     * 
+     * @param personId
+     * @return
+     *     returns java.util.List<introsde.assignment.soap.AchivedGoal>
+     */
+    @WebMethod
+    @WebResult(name = "goal", targetNamespace = "")
+    @RequestWrapper(localName = "readAchivedGoalList", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.ReadAchivedGoalList")
+    @ResponseWrapper(localName = "readAchivedGoalListResponse", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.ReadAchivedGoalListResponse")
+    @Action(input = "http://soap.assignment.introsde/People/readAchivedGoalListRequest", output = "http://soap.assignment.introsde/People/readAchivedGoalListResponse")
+    public List<AchivedGoal> readAchivedGoalList(
+        @WebParam(name = "personId", targetNamespace = "")
+        int personId);
+
+    /**
+     * 
      * @param lifeStatus
      * @param personId
      * @return
@@ -100,39 +115,6 @@ public interface People {
 
     /**
      * 
-     * @param personId
-     * @param history
-     */
-    @WebMethod
-    @RequestWrapper(localName = "updatePersonMeasure", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.UpdatePersonMeasure")
-    @ResponseWrapper(localName = "updatePersonMeasureResponse", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.UpdatePersonMeasureResponse")
-    @Action(input = "http://soap.assignment.introsde/People/updatePersonMeasureRequest", output = "http://soap.assignment.introsde/People/updatePersonMeasureResponse")
-    public void updatePersonMeasure(
-        @WebParam(name = "personId", targetNamespace = "")
-        int personId,
-        @WebParam(name = "history", targetNamespace = "", mode = WebParam.Mode.INOUT)
-        Holder<HealthMeasureHistory> history);
-
-    /**
-     * 
-     * @param achivedGoal
-     * @param personId
-     * @return
-     *     returns introsde.assignment.soap.Person
-     */
-    @WebMethod
-    @WebResult(name = "achivedGoal", targetNamespace = "")
-    @RequestWrapper(localName = "saveAchivedGoal", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.SaveAchivedGoal")
-    @ResponseWrapper(localName = "saveAchivedGoalResponse", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.SaveAchivedGoalResponse")
-    @Action(input = "http://soap.assignment.introsde/People/saveAchivedGoalRequest", output = "http://soap.assignment.introsde/People/saveAchivedGoalResponse")
-    public Person saveAchivedGoal(
-        @WebParam(name = "personId", targetNamespace = "")
-        int personId,
-        @WebParam(name = "achivedGoal", targetNamespace = "")
-        AchivedGoal achivedGoal);
-
-    /**
-     * 
      * @return
      *     returns java.util.List<introsde.assignment.soap.Goal>
      */
@@ -142,33 +124,6 @@ public interface People {
     @ResponseWrapper(localName = "readGoalListResponse", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.ReadGoalListResponse")
     @Action(input = "http://soap.assignment.introsde/People/readGoalListRequest", output = "http://soap.assignment.introsde/People/readGoalListResponse")
     public List<Goal> readGoalList();
-
-    /**
-     * 
-     * @param person
-     */
-    @WebMethod
-    @RequestWrapper(localName = "updatePerson", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.UpdatePerson")
-    @ResponseWrapper(localName = "updatePersonResponse", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.UpdatePersonResponse")
-    @Action(input = "http://soap.assignment.introsde/People/updatePersonRequest", output = "http://soap.assignment.introsde/People/updatePersonResponse")
-    public void updatePerson(
-        @WebParam(name = "person", targetNamespace = "", mode = WebParam.Mode.INOUT)
-        Holder<Person> person);
-
-    /**
-     * 
-     * @param idAchivement
-     * @return
-     *     returns introsde.assignment.soap.AchivedGoal
-     */
-    @WebMethod
-    @WebResult(name = "achivedGoal", targetNamespace = "")
-    @RequestWrapper(localName = "readAchivedGoal", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.ReadAchivedGoal")
-    @ResponseWrapper(localName = "readAchivedGoalResponse", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.ReadAchivedGoalResponse")
-    @Action(input = "http://soap.assignment.introsde/People/readAchivedGoalRequest", output = "http://soap.assignment.introsde/People/readAchivedGoalResponse")
-    public AchivedGoal readAchivedGoal(
-        @WebParam(name = "idAchivement", targetNamespace = "")
-        int idAchivement);
 
     /**
      * 
@@ -199,15 +154,75 @@ public interface People {
 
     /**
      * 
+     * @param idAchivement
      * @return
-     *     returns introsde.assignment.soap.CustomMeasureDefinition
+     *     returns introsde.assignment.soap.AchivedGoal
      */
     @WebMethod
-    @WebResult(name = "measureType", targetNamespace = "")
-    @RequestWrapper(localName = "readMeasureTypes", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.ReadMeasureTypes")
-    @ResponseWrapper(localName = "readMeasureTypesResponse", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.ReadMeasureTypesResponse")
-    @Action(input = "http://soap.assignment.introsde/People/readMeasureTypesRequest", output = "http://soap.assignment.introsde/People/readMeasureTypesResponse")
-    public CustomMeasureDefinition readMeasureTypes();
+    @WebResult(name = "achivedGoal", targetNamespace = "")
+    @RequestWrapper(localName = "readAchivedGoal", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.ReadAchivedGoal")
+    @ResponseWrapper(localName = "readAchivedGoalResponse", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.ReadAchivedGoalResponse")
+    @Action(input = "http://soap.assignment.introsde/People/readAchivedGoalRequest", output = "http://soap.assignment.introsde/People/readAchivedGoalResponse")
+    public AchivedGoal readAchivedGoal(
+        @WebParam(name = "idAchivement", targetNamespace = "")
+        int idAchivement);
+
+    /**
+     * 
+     * @param person
+     */
+    @WebMethod
+    @RequestWrapper(localName = "updatePerson", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.UpdatePerson")
+    @ResponseWrapper(localName = "updatePersonResponse", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.UpdatePersonResponse")
+    @Action(input = "http://soap.assignment.introsde/People/updatePersonRequest", output = "http://soap.assignment.introsde/People/updatePersonResponse")
+    public void updatePerson(
+        @WebParam(name = "person", targetNamespace = "", mode = WebParam.Mode.INOUT)
+        Holder<Person> person);
+
+    /**
+     * 
+     * @param achivedGoal
+     * @param personId
+     * @return
+     *     returns introsde.assignment.soap.Person
+     */
+    @WebMethod
+    @WebResult(name = "achivedGoal", targetNamespace = "")
+    @RequestWrapper(localName = "saveAchivedGoal", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.SaveAchivedGoal")
+    @ResponseWrapper(localName = "saveAchivedGoalResponse", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.SaveAchivedGoalResponse")
+    @Action(input = "http://soap.assignment.introsde/People/saveAchivedGoalRequest", output = "http://soap.assignment.introsde/People/saveAchivedGoalResponse")
+    public Person saveAchivedGoal(
+        @WebParam(name = "personId", targetNamespace = "")
+        int personId,
+        @WebParam(name = "achivedGoal", targetNamespace = "")
+        AchivedGoal achivedGoal);
+
+    /**
+     * 
+     * @param goalId
+     * @return
+     *     returns introsde.assignment.soap.Goal
+     */
+    @WebMethod
+    @WebResult(name = "goal", targetNamespace = "")
+    @RequestWrapper(localName = "readGoal", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.ReadGoal")
+    @ResponseWrapper(localName = "readGoalResponse", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.ReadGoalResponse")
+    @Action(input = "http://soap.assignment.introsde/People/readGoalRequest", output = "http://soap.assignment.introsde/People/readGoalResponse")
+    public Goal readGoal(
+        @WebParam(name = "goalId", targetNamespace = "")
+        int goalId);
+
+    /**
+     * 
+     * @param person
+     */
+    @WebMethod
+    @RequestWrapper(localName = "createPerson", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.CreatePerson")
+    @ResponseWrapper(localName = "createPersonResponse", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.CreatePersonResponse")
+    @Action(input = "http://soap.assignment.introsde/People/createPersonRequest", output = "http://soap.assignment.introsde/People/createPersonResponse")
+    public void createPerson(
+        @WebParam(name = "person", targetNamespace = "", mode = WebParam.Mode.INOUT)
+        Holder<Person> person);
 
     /**
      * 
@@ -229,18 +244,6 @@ public interface People {
 
     /**
      * 
-     * @param person
-     */
-    @WebMethod
-    @RequestWrapper(localName = "createPerson", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.CreatePerson")
-    @ResponseWrapper(localName = "createPersonResponse", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.CreatePersonResponse")
-    @Action(input = "http://soap.assignment.introsde/People/createPersonRequest", output = "http://soap.assignment.introsde/People/createPersonResponse")
-    public void createPerson(
-        @WebParam(name = "person", targetNamespace = "", mode = WebParam.Mode.INOUT)
-        Holder<Person> person);
-
-    /**
-     * 
      * @param personId
      */
     @WebMethod
@@ -253,17 +256,14 @@ public interface People {
 
     /**
      * 
-     * @param goalId
      * @return
-     *     returns introsde.assignment.soap.Goal
+     *     returns introsde.assignment.soap.CustomMeasureDefinition
      */
     @WebMethod
-    @WebResult(name = "goal", targetNamespace = "")
-    @RequestWrapper(localName = "readGoal", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.ReadGoal")
-    @ResponseWrapper(localName = "readGoalResponse", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.ReadGoalResponse")
-    @Action(input = "http://soap.assignment.introsde/People/readGoalRequest", output = "http://soap.assignment.introsde/People/readGoalResponse")
-    public Goal readGoal(
-        @WebParam(name = "goalId", targetNamespace = "")
-        int goalId);
+    @WebResult(name = "measureType", targetNamespace = "")
+    @RequestWrapper(localName = "readMeasureTypes", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.ReadMeasureTypes")
+    @ResponseWrapper(localName = "readMeasureTypesResponse", targetNamespace = "http://soap.assignment.introsde/", className = "introsde.assignment.soap.ReadMeasureTypesResponse")
+    @Action(input = "http://soap.assignment.introsde/People/readMeasureTypesRequest", output = "http://soap.assignment.introsde/People/readMeasureTypesResponse")
+    public CustomMeasureDefinition readMeasureTypes();
 
 }
