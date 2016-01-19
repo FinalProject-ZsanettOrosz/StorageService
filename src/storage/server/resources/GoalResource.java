@@ -84,8 +84,10 @@ public class GoalResource {
 	@Produces({ MediaType.TEXT_PLAIN })
 	public Response getPicture() throws ClientProtocolException, IOException {
 
-		String externalService = "http://10.218.223.84:5701/sdelab/pic";
-
+		//String externalService = "http://10.218.223.84:5701/sdelab/pic";
+		String externalService = "https://mighty-spire-4110.herokuapp.com/sdelab/pic";
+		
+		
 		String jsonResponse;
 
 		DefaultHttpClient client = new DefaultHttpClient();
